@@ -1,10 +1,10 @@
 # Automated-running-of-multiple-SESSA-files-XPS-AES
-Automated running of multiple SESSA (simulation of electron spectra for surface analysis) simulations
+Automated running of multiple SESSA (simulation of electron spectra for surface analysis, NIST) simulations
 
 The scripts were adapted from the work of Yung-Chen Wang, where they kindly put the script in their PhD thesis (https://mobt3ath.com/uplode/books/book-82574.pdf)
 I added options for varying thickness, photon energy, and density, added the planar geometry morphology option, and removed some bugs.
 
-Note you will need python installed. I usually ran the scripts from batch files I will also upload examples. You need to tell that the path to your python and the script.
+Note you will need python and SESSA installed. I usually ran the scripts from batch files I will also upload examples. You need to tell that the path to your python and the script.
 
 Put all the details for the sample, and the values you want to vary between in the different runs, in the excel file. This should be fairly self explanatory when you look at the file (more details below)
 
@@ -20,7 +20,8 @@ Thickness of layers
 Density of layers
 Photon energy (only when you have chosen 4 for synchrotron radiation)
 
-The experiment Geometry is set up for SpAnTeX at KMC1 with grazing incidence of 5 degrees. 
+The experiment Geometry is set up for SpAnTeX at KMC1 (https://www.sciencedirect.com/science/article/pii/S0039602821001072) with grazing incidence of 5 degrees. 
+NOTE This will be very different if you are losing a laboratory X-ray source or a soft X-ray beamline so make sure to put the right geometry settings here.
 Sample geometry you can currently choose either planar (put 1 in C4) or layered spheres (put 5 in C4).
 
 Type of source - 1 is Al Kalpha, 2 MgKalpa, 3 ZrMz, and 4 for synchrotron photons.
@@ -28,9 +29,10 @@ Type of source - 1 is Al Kalpha, 2 MgKalpa, 3 ZrMz, and 4 for synchrotron photon
 	put this number in B18. e.g. 3000 for 3000 eV.
 	If you want to VARY the photon energy, you need to enter an upper (A18) and lower (B18) bound, and increment size (C18)
 	for example you want 2000 eV, 3000 eV, 4000 eV. Then put 4000 in A18, 2000 in B18, and 1000 in C18.
+	The kinetic energy range will stay fixed for each photon energy.
 	
 Sample composition, always write it with a slash between elements e.g. for water H2/O. 
-It is case sensitive too so Gold is Au.
+It is case sensitive too e.g. Gold is Au.
 If you have multiple layers with the same element in you can label it them, for example H2/O[1] H2/O[2] etc.
 
 Things necessary to set up:
@@ -60,14 +62,14 @@ Part II:
 Put your SESSA_sample_def.csv in the same folder with the 4 files I have given you. (2 .bat files and 2 .py files)
 
 Part III:
-Run first_sessa_script
+Run first_sessa_script.bat (or the SESSAautomaterscript1_generatingsessionfiles.py)
 Follow instructions in the cmd window that opens (press enter etc).
 This makes a new folder called "session files + date + time"
 Inside will be text files that can be read by SESSA
 The cmd window will tell you how many variables are varied and how many files are created.
 
 Part IV:
-Run second_sessa_script
+Run second_sessa_script.bat (or SESSAautomaterscript2_runningthesessionfiles.py)
 This relies on the session file folder that you created in Part III being the most recently modified folder.
 If it's not working but Part III worked try running part III again.
 
@@ -76,8 +78,7 @@ After each simulation for a set of coniditons has run it will ask you if you wan
 Note that this can sometimes be hidden behind other windows on your computer. Especially if you did anything else while the simulation is running.
 My best advice is to run with the sound of your computer on, so you can hear when this window pops up and then find it by minimzing windows until you see it.
 
-Please note the simulations can take a very long time if you have a lot of elements and have a convergence factor or 1E-4
-If you set 
+Please note the simulations can take a very long time if you have a lot of elements and have a convergence factor lower than 1E-4
 
 Part V:
 Once all simulations are run, you get an excel file created in a results folder inside the session files folder. 
