@@ -2,7 +2,9 @@
 Automated running of multiple SESSA (simulation of electron spectra for surface analysis, NIST) simulations
 
 The scripts were adapted from the work of Yung-Chen Wang, where they kindly put the script in their PhD thesis (https://mobt3ath.com/uplode/books/book-82574.pdf)
-I added options for varying thickness, photon energy, and density, added the planar geometry morphology option, and removed some bugs.
+I added options for varying thickness (with various options), varying photon energy, added the planar geometry morphology option, and removed some bugs in both scripts.
+
+Essentially the first script will look at an excel file were you outlined what you want to do in the simulations (how many with what varying inbetween them) + everything else sessa needs to know. It then writes session files (one per simulation) for sessa to read with these details in each. The second script opens sessa and gets it to run each session file one by one, and stores the results in a new excel file so you can compare all simulations easily at the end.
 
 Note you will need python and SESSA installed. I usually ran the scripts from batch files I will also upload examples. You need to tell that the path to your python and the script.
 
@@ -22,7 +24,7 @@ Photon energy (only when you have chosen 4 for synchrotron radiation)
 
 The experiment Geometry is set up for SpAnTeX at KMC1 (https://www.sciencedirect.com/science/article/pii/S0039602821001072) with grazing incidence of 5 degrees. 
 NOTE This will be very different if you are losing a laboratory X-ray source or a soft X-ray beamline so make sure to put the right geometry settings here.
-Sample geometry you can currently choose either planar (put 1 in C4) or layered spheres (put 5 in C4).
+Sample geometry you can currently choose either planar (put 1 in C4) or layered spheres (put 5 in C4), if you want to run layered spheres but keep the total diameter CONSTANT put 6 in C4.
 
 Type of source - 1 is Al Kalpha, 2 MgKalpa, 3 ZrMz, and 4 for synchrotron photons.
 	If you put 4, you need to set the energy. Go to B18. If you only want to simulate with ONE photon energy,
