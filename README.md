@@ -55,6 +55,8 @@ How to vary layer thickness/density
 	
 	For density, do the same thing but in columns L, M, and N.
 	Note that this is already * 1E22. So if you want 3.2E23, enter 32.
+	
+Note that you can vary multiple things in one go if you want. e.g. two layer thicknesses, or layer thicknesses and photon energy. It will make session files for all the possible combinations. It can be less nice to look at the resulting excel file this way though so I would recommend varying one thing at a time.
 
 
 You can set the BINDING energy range in B27 and C27 to include all the core levels you need.
